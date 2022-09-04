@@ -13,7 +13,10 @@ export class Pawn {
         if (this.board[x - 1][y].resident === 0) {
           movementArray.push([x - 1, y]);
         }
-        if (this.board[x - 2][y].resident === 0) {
+        if (
+          this.board[x - 2][y].resident === 0 &&
+          this.board[x - 1][y].resident === 0
+        ) {
           movementArray.push([x - 2, y]);
         }
       } else {
@@ -36,7 +39,10 @@ export class Pawn {
         if (this.board[x + 1][y].resident === 0) {
           movementArray.push([x + 1, y]);
         }
-        if (this.board[x + 2][y].resident === 0) {
+        if (
+          this.board[x + 2][y].resident === 0 &&
+          this.board[x + 1][y].resident === 0
+        ) {
           movementArray.push([x + 2, y]);
         }
       } else {

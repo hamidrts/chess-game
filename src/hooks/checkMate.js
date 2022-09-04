@@ -11,31 +11,27 @@ export function checkMate(chessBoard, playerTurn) {
         moveArray.forEach((element) => {
           board[element[0]][element[1]].resident = board[i][j].resident;
           board[i][j].resident = 0;
-          var ifKish = checkKish(board, playerTurn);
+          let ifKish = checkKish(board, playerTurn);
           if (ifKish.kish !== true) {
+            console.log(element, board[i][j].resident.type, i, j);
             mate = false;
           }
           board[i][j].resident = board[element[0]][element[1]].resident;
           board[element[0]][element[1]].resident = 0;
         });
-        if (mate === false) {
-          break;
-        } else {
-          attackArray.forEach((element) => {
-            var deletPiece = board[element[0]][element[1]].resident;
-            board[element[0]][element[1]].resident = board[i][j].resident;
-            board[i][j].resident = 0;
-            var ifKish = checkKish();
-            if (ifKish !== true) {
-              mate = false;
-            }
-            board[i][j].resident = board[element[0]][element[1]].resident;
-            board[element[0]][element[1]].resident = deletPiece;
-          });
-          if (mate === false) {
-            break;
+
+        attackArray.forEach((element) => {
+          var deletPiece = board[element[0]][element[1]].resident;
+          board[element[0]][element[1]].resident = board[i][j].resident;
+          board[i][j].resident = 0;
+          let ifKish = checkKish(board, playerTurn);
+          if (ifKish !== true) {
+            console.log(element, board[i][j].resident.type, i, j);
+            mate = false;
           }
-        }
+          board[i][j].resident = board[element[0]][element[1]].resident;
+          board[element[0]][element[1]].resident = deletPiece;
+        });
       }
     }
   }
